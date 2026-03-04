@@ -16,7 +16,7 @@
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
 
-  --max-width: 900px;
+  --max-width: 1280px;
   --nav-height: 64px;
 
   --space-1: 0.4rem;
@@ -66,9 +66,8 @@ ul, ol {
 
 /* --- Layout --- */
 .container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-5);
+  width: 100%;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
 }
 
 /* --- Navigation --- */
@@ -82,9 +81,8 @@ ul, ol {
 }
 
 .nav-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-5);
+  width: 100%;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
   height: 100%;
   display: flex;
   align-items: center;
@@ -157,7 +155,25 @@ ul, ol {
 
 /* --- Hero --- */
 .hero {
-  padding: var(--space-8) 0 var(--space-7);
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  padding: var(--space-7) 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: center;
+  width: 100%;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  justify-content: center;
 }
 
 .hero-label {
@@ -170,20 +186,36 @@ ul, ol {
 }
 
 .hero-headline {
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-size: clamp(2.8rem, 5vw, 5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.1;
   color: var(--fg);
-  max-width: 680px;
-  margin-bottom: var(--space-5);
 }
 
 .hero-sub {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: var(--fg-muted);
-  max-width: 520px;
   line-height: 1.6;
+}
+
+.hero-cta {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+
+.hero-cta:hover {
+  color: var(--accent-dark);
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
 }
 
 /* --- Section --- */
@@ -573,9 +605,8 @@ ul, ol {
 }
 
 .footer-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-5);
+  width: 100%;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
